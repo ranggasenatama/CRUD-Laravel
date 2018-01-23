@@ -3,6 +3,7 @@
 use App\User;
 use App\Address;
 use App\Post;
+use App\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,15 @@ Route::get('/insert/onetomany', function () {
 
 });
 
+Route::get('/insert/manytomany', function () {
+    
+    $user = User::findOrFail(2);
+
+    $role = new Role(['name'=>'Admin']);
+
+    $user->roles()->save($role);
+
+});
 
 //UPDATE
 Route::get('/update/onetoone', function () {
