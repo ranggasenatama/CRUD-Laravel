@@ -73,6 +73,16 @@ Route::get('/read/onetoone', function () {
 
 });
 
+Route::get('/read/onetomany', function () {
+
+    $posts = Post::findOrFail(2)->users()->get();
+
+    // return $posts;
+
+    dd($posts);
+    
+});
+
 //DELETE
 Route::get('/delete/onetoone', function () {
     
