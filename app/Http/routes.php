@@ -62,6 +62,18 @@ Route::get('/update/onetoone', function () {
 
 });
 
+Route::get('/update/onetomany', function () {
+
+    $user = User::find(2);
+    // $posts = Post::findOrFail(1);
+
+    // $posts->title = 'test wae wae';
+    // $posts->body = 'let me do it';
+
+    $user->posts()->where('user_id','2')->update(['title'=>'test gan','body'=>'body bae bae']);
+    
+});
+
 //READ
 Route::get('/read/onetoone', function () {
     
