@@ -2,6 +2,7 @@
 
 use App\User;
 use App\Address;
+use App\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ Route::get('/', function () {
 
 //CRUD
 
+//INSERT
 Route::get('/insert/onetoone', function () {
 
     $user = User::findOrFail(1);
@@ -31,6 +33,20 @@ Route::get('/insert/onetoone', function () {
 
 });
 
+Route::get('/insert/onetomany', function () {
+    
+    $user = User::findOrFail(2);
+
+    // $post = new Post(['title'=>'title gan','body'=>'body gan']);
+
+    // $user->posts()->save($post);
+
+    $user->posts()->create(['title'=>'coba title baru','body'=>'just say good bye']);
+
+});
+
+
+//UPDATE
 Route::get('/update/onetoone', function () {
 
     $address = Address::where('user_id',1)->get();
@@ -46,6 +62,7 @@ Route::get('/update/onetoone', function () {
 
 });
 
+//READ
 Route::get('/read/onetoone', function () {
     
     $reads = User::find(1)->addresses()->get();
@@ -56,6 +73,7 @@ Route::get('/read/onetoone', function () {
 
 });
 
+//DELETE
 Route::get('/delete/onetoone', function () {
     
     $delete = User::findOrFail(1);
