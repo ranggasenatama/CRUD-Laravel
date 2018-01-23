@@ -30,3 +30,18 @@ Route::get('/insert/onetoone', function () {
     $user->addresses()->save($address);
 
 });
+
+Route::get('/update/onetoone', function () {
+
+    $address = Address::where('user_id',1)->get();
+
+    // $address->name = 'Lol' ;
+
+    foreach ($address as $test) {
+        $test-> name = 'haha';
+        $test->save();
+    }    
+
+    // $address->save();
+
+});
