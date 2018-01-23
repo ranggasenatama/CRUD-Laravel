@@ -48,9 +48,9 @@ Route::get('/insert/onetomany', function () {
 
 Route::get('/insert/manytomany', function () {
     
-    $user = User::findOrFail(2);
+    $user = User::findOrFail(3);
 
-    $role = new Role(['name'=>'Admin']);
+    $role = new Role(['name'=>'Orang Biasa']);
 
     $user->roles()->save($role);
 
@@ -103,6 +103,21 @@ Route::get('/read/onetomany', function () {
 
     dd($posts);
     
+});
+
+Route::get('/read/manytomany', function () {
+    
+    // $roles = Role::find(1)->users;
+
+    // echo ($roles);
+
+
+    $users = User::find(3)->roles;
+
+    foreach ($users as $user) {
+        echo $user->name."<br>";
+    }
+
 });
 
 //DELETE
