@@ -1,5 +1,8 @@
 <?php
 
+use App\User;
+use App\Address;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,4 +16,17 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+//CRUD
+
+Route::get('/insert/onetoone', function () {
+
+    $user = User::findOrFail(1);
+
+    $address = new Address(['name'=>'coba ae wes']);
+    // $address::create(['name'=>'coba ae wes']);
+
+    $user->addresses()->save($address);
+
 });
