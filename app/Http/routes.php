@@ -84,6 +84,23 @@ Route::get('/update/onetomany', function () {
     
 });
 
+Route::get('/update/manytomany', function () {
+
+    $user = User::findOrFail(3);
+
+    if($user->has('roles'))
+    {
+        foreach ($user->roles as $role) 
+        {
+            if(strtolower($role->name) == 'biasa aja')
+            {
+                $role->update(['name'=>'Orang Biasa']);
+            }
+        }
+    }
+    
+});
+
 //READ
 Route::get('/read/onetoone', function () {
     
