@@ -104,3 +104,15 @@ Route::get('/delete/onetoone', function () {
     $delete->delete();
 
 });
+
+Route::get('/delete/onetomany', function () {
+    
+    $delete = User::findOrFail(2);
+
+    $delete->posts;
+
+    return $delete;
+
+    $delete->posts()->where('id',3)->delete();
+
+});
