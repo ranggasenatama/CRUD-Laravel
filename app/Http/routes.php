@@ -45,3 +45,22 @@ Route::get('/update/onetoone', function () {
     // $address->save();
 
 });
+
+Route::get('/read/onetoone', function () {
+    
+    $reads = User::find(1)->addresses()->get();
+
+    foreach ($reads as $read) {
+        echo $read;
+    }
+
+});
+
+Route::get('/delete/onetoone', function () {
+    
+    $delete = User::findOrFail(1);
+
+    $delete->addresses()->delete();
+    $delete->delete();
+
+});
