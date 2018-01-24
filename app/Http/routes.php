@@ -168,3 +168,35 @@ Route::get('/delete/manytomany', function () {
     $user->delete();
 
 });
+
+//ATTACH
+
+Route::get('/insert/manytomany/attach', function () {
+
+    $user = User::findOrFail(2);
+
+    $user->roles()->attach(4);
+    
+});
+
+//DETACH
+
+Route::get('/delete/manytomany/detach', function () {
+
+    $user = User::findOrFail(2);
+
+    $user->roles()->detach(4); //spesific role
+
+    $user->roles()->detach(4); //all roles in id 2
+    
+});
+
+//SYNC
+
+Route::get('/update/manytomany/sync', function () {
+
+    $user = User::findOrFail(5);
+
+    $user->roles()->sync([4]);
+    
+});
