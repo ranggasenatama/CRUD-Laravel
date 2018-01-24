@@ -4,6 +4,9 @@ use App\User;
 use App\Address;
 use App\Post;
 use App\Role;
+use App\Staff;
+use App\Photo;
+use App\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +57,16 @@ Route::get('/insert/manytomany', function () {
 
     $user->roles()->save($role);
 
+});
+
+Route::get('/insert/polymorph', function () {
+
+    $staff = Staff::findOrFail(1);
+
+    $photo = new Photo(['path'=>'image.png']);
+
+    $staff->photos()->save($photo);
+    
 });
 
 //UPDATE
