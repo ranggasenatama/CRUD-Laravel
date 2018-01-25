@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddNameColumnToRolesTables extends Migration
+class CreateVideosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,10 @@ class AddNameColumnToRolesTables extends Migration
      */
     public function up()
     {
-        Schema::table('roles', function (Blueprint $table) {
+        Schema::create('videos', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -24,8 +26,6 @@ class AddNameColumnToRolesTables extends Migration
      */
     public function down()
     {
-        Schema::table('roles', function (Blueprint $table) {
-            $table->dropColumn('name');
-        });
+        Schema::drop('videos');
     }
 }

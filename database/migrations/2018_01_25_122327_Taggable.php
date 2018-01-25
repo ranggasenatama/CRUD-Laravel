@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolesUsersTables extends Migration
+class Taggable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class CreateRolesUsersTables extends Migration
      */
     public function up()
     {
-        Schema::create('role_user', function (Blueprint $table) { //harus singular
+        Schema::create('taggables', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('role_id')->unsigned()->nullable()->index();
-            $table->integer('user_id')->unsigned()->nullable()->index();
+            $table->integer('tag_id');
+            $table->integer('taggable_id');
+            $table->string('taggable_type');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateRolesUsersTables extends Migration
      */
     public function down()
     {
-        Schema::drop('role_user');
+        Schema::drop('Taggable');
     }
 }
