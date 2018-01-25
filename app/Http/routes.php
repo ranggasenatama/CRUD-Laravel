@@ -245,3 +245,27 @@ Route::get('/update/manytomany/sync', function () {
     $user->roles()->sync([4]);
     
 });
+
+//ASSIGN awalnya kosong jadi ada imagaable id
+
+Route::get('/assign/polymorph', function () {
+    
+    $staff = Staff::findOrFail(1);
+
+    $photo = Photo::findOrFail(4);
+
+    $staff->photos()->save($photo);
+
+});
+
+//UNASSIGN
+
+Route::get('/unassign/polymorph', function () {
+    
+    $staff = Staff::findOrFail(1);
+
+    $photo = Photo::findOrFail(4);
+
+    $staff->photos()->whereId(4)->update(['imageable_id'=>'','imageable_type'=>'']);
+
+});
