@@ -114,6 +114,19 @@ Route::get('/update/manytomany', function () {
     
 });
 
+Route::get('/update/polymorph', function () {
+    
+    $staff = Staff::findOrFail(1);
+
+    if($staff->has('photos'))
+    {
+        foreach ($staff->photos as $photo) {
+            $photo->update(['path'=>'baru.jpg']);
+        }
+    }
+
+});
+
 //READ
 Route::get('/read/onetoone', function () {
     
@@ -150,6 +163,16 @@ Route::get('/read/manytomany', function () {
 
 });
 
+Route::get('/read/polymorph', function () {
+
+    $staff = Staff::findOrFail(1);
+
+    foreach ($staff->photos as $photo) {
+        echo $photo->path;
+    }
+    
+});
+
 //DELETE
 Route::get('/delete/onetoone', function () {
     
@@ -179,6 +202,15 @@ Route::get('/delete/manytomany', function () {
     $user->roles()->detach();
 
     $user->delete();
+
+});
+
+Route::get('/delete/polymorph', function () {
+    
+    $staff = Staff::findOrFail(1);
+
+    $staff->photos()->whereId(1)->first()->delete();
+
 
 });
 
