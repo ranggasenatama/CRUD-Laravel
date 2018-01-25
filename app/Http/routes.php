@@ -259,6 +259,14 @@ Route::get('/delete/polymorph', function () {
 
 });
 
+Route::get('/delete/polymorphmanytomany', function () {
+    
+    $post = Post::find(1);
+
+    $post->tags()->detach();
+
+});
+
 //ATTACH menambah
 
 Route::get('/insert/manytomany/attach', function () {
@@ -277,7 +285,7 @@ Route::get('/delete/manytomany/detach', function () {
 
     $user->roles()->detach(4); //spesific role
 
-    $user->roles()->detach(4); //all roles in id 2
+    $user->roles()->detach(); //all roles in id 2
     
 });
 
