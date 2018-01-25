@@ -7,6 +7,8 @@ use App\Role;
 use App\Staff;
 use App\Photo;
 use App\Product;
+use App\Video;
+use App\Tag;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +71,23 @@ Route::get('/insert/polymorph', function () {
     
 });
 
+Route::get('/insert/polymorphmanytomany', function () {
+
+    // $post = Post::findOrFail(1);
+
+    // $post->tags()->create(['name'=>'coba ae wes']);
+
+    // $post = Post::create(['title'=>'tile baru','body'=>'body baru']);
+
+    // $video = Video::create(['name'=>'namee']);
+
+    $tag = Tag::findOrFail(1);
+    $post = Post::findOrFail(1);
+
+    $tag->posts()->save($post);
+    
+});
+
 //UPDATE
 Route::get('/update/onetoone', function () {
 
@@ -127,6 +146,22 @@ Route::get('/update/polymorph', function () {
 
 });
 
+Route::get('/update/polymorphmanytomany', function () {
+    
+    // $post = Post::find(1);
+
+    // foreach ($post->tags as $tag) {
+    //     return $tag->where('name','anu')->update(['name'=>'lol']);
+    // }
+
+    $post = Post::find(1);
+
+    $tag= Tag::find(3);
+
+    $post->tags()->attach($tag);
+
+});
+
 //READ
 Route::get('/read/onetoone', function () {
     
@@ -173,6 +208,16 @@ Route::get('/read/polymorph', function () {
     
 });
 
+Route::get('/read/polymorphmanytomany', function () {
+    
+    $post = Post::find(1);
+
+    foreach ($post->tags as $tag) {
+        echo $tag->name."<br>";
+    }
+
+});
+
 //DELETE
 Route::get('/delete/onetoone', function () {
     
@@ -214,7 +259,7 @@ Route::get('/delete/polymorph', function () {
 
 });
 
-//ATTACH
+//ATTACH menambah
 
 Route::get('/insert/manytomany/attach', function () {
 
@@ -224,7 +269,7 @@ Route::get('/insert/manytomany/attach', function () {
     
 });
 
-//DETACH
+//DETACH menghapus 
 
 Route::get('/delete/manytomany/detach', function () {
 
@@ -236,7 +281,7 @@ Route::get('/delete/manytomany/detach', function () {
     
 });
 
-//SYNC
+//SYNC mendelete yang lain menyisakan yang dalam array sync
 
 Route::get('/update/manytomany/sync', function () {
 
